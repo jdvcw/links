@@ -1,1 +1,1 @@
->[free deploy yeeeeeeeee](https://jdvcw.github.io/links/)
+>[l](https://jdvcw.github.io/links/)
