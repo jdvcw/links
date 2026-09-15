@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css">
 
 </head>
+
 <body>
     <div id="snow-container"></div>
     <div class="bio-container">
@@ -44,83 +46,84 @@
             </div>
         </div>
     </div>
-    
+
     <footer class="site-footer">
         jdvcw.exe
     </footer>
 
     <script>
-            const snowContainer = document.getElementById('snow-container');
-            function createSnowflake(){
-                const flake = document.createElement('div');
-                flake.classList.add('snowflake');
+        const snowContainer = document.getElementById('snow-container');
+        function createSnowflake() {
+            const flake = document.createElement('div');
+            flake.classList.add('snowflake');
 
-                const size = Math.random()*25+5;
-                flake.style.width=`${size}px`;
-                flake.style.height=`${size}px`;
+            const size = Math.random() * 25 + 5;
+            flake.style.width = `${size}px`;
+            flake.style.height = `${size}px`;
 
-                flake.style.left=`${Math.random()*100}%`;
+            flake.style.left = `${Math.random() * 100}%`;
 
-                flake.style.opacity=Math.random()*0.6+0.3;
+            flake.style.opacity = Math.random() * 0.6 + 0.3;
 
-                const fallDuration = Math.random()*4+6;
-                flake.style.animationDuration=`${fallDuration}s,${Math.random()*2+2}s`;
+            const fallDuration = Math.random() * 4 + 6;
+            flake.style.animationDuration = `${fallDuration}s,${Math.random() * 2 + 2}s`;
 
-                snowContainer.appendChild(flake);
+            snowContainer.appendChild(flake);
 
-                setTimeout(() => {
-                    flake.remove();
-                }, fallDuration*1000);
+            setTimeout(() => {
+                flake.remove();
+            }, fallDuration * 1000);
 
 
+        }
+
+        setInterval(createSnowflake, 250)
+
+
+        const typingText = document.getElementById(`typing-text`)
+        const phrases = [
+            "0246813579",
+            "0369147258",
+            "0xEFBEADDE",
+            "0x7FFA4B20",
+            "0000000000",
+        ];
+
+
+        let phraseIndex = 0;
+        let characterIndex = 0;
+        let isDeleting = false;
+
+        function type() {
+            const currentPhrase = phrases[phraseIndex]
+            if (isDeleting) {
+                typingText.textContent = currentPhrase.substring(0, characterIndex - 1);
+                characterIndex--;
+            } else {
+                typingText.textContent = currentPhrase.substring(0, characterIndex + 1);
+                characterIndex++;
             }
 
-            setInterval(createSnowflake,250)
-
-
-            const typingText = document.getElementById(`typing-text`)
-            const phrases=[
-                "0246813579",
-                "0369147258",
-                "0xEFBEADDE",
-                "0x7FFA4B20",
-                "0000000000",
-            ];
-
-
-            let phraseIndex=0;
-            let characterIndex=0;
-            let isDeleting = false;
-
-            function type(){
-                const currentPhrase=phrases[phraseIndex]
-                if (isDeleting){
-                    typingText.textContent=currentPhrase.substring(0,characterIndex-1);
-                    characterIndex--;
-                }else{
-                    typingText.textContent=currentPhrase.substring(0,characterIndex+1);
-                    characterIndex++;
-                }
-
-                let typingSpeed=777;
-                if (isDeleting){
-                    typingSpeed/=2;
-                }
-
-                if (!isDeleting && characterIndex==currentPhrase.length){
-                    typingSpeed=2000;
-                    isDeleting=true;
-                }
-                else if (isDeleting && characterIndex==0){
-                    isDeleting=false;
-                    phraseIndex=(phraseIndex+1)%phrases.length;
-                    typingSpeed=500;
-                }
-                setTimeout(type,typingSpeed);
+            let typingSpeed = 1200;
+            if (isDeleting) {
+                typingSpeed /= 2;
             }
-            setTimeout(()=>{
-                type();
-            },466)
+
+            if (!isDeleting && characterIndex == currentPhrase.length) {
+                typingSpeed = 2000;
+                isDeleting = true;
+            }
+            else if (isDeleting && characterIndex == 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typingSpeed = 1200;
+            }
+            setTimeout(type, typingSpeed);
+        }
+        setTimeout(() => {
+            type();
+        }, 466)
     </script>
 </body>
+
 </html>
